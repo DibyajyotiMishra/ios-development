@@ -14,7 +14,7 @@ import Observation
 //}
 
 @Observable
-// can not be a class, it has to be struct
+// can not be a struct, it has to be class
 class AppState {
     var isOn: Bool = false
 }
