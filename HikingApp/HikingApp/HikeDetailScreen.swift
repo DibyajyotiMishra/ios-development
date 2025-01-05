@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct HikeDetailScreen: View {
+    
+    let hike: Hike
+    
+    @State private var isZoomed: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(hike.image)
+                .resizable()
+                .aspectRatio(contentMode: isZoomed ? .fill :
+                        .fit)
+                .onTapGesture {
+                    withAnimation {
+                        isZoomed.toggle()
+                    }
+                }
+            if !isZoomed {
+                Text(hike.name)
+                    .font(.title2)
+                Text("\(hike.distance.formatted()) kms")
+                    .font(.subheadline)
+                Spacer()
+            }
+        }.navigationTitle(hike.name)
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    HikeDetailScreen()
+    NavigationStack {
+        HikeDetailScreen(hike: Hike(name: "Somewhere in the Mountains", image: "mountain", distance: 15.8))
+    }
 }

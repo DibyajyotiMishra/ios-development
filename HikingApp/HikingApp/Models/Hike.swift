@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Hike: Identifiable, Hashable {
+    let id =  UUID()
+    let name: String
+    let image: String
+    let distance: Double
+}
